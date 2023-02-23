@@ -256,7 +256,7 @@ if pagina == "Dashboards":
             ["DevEUI"]].reset_index()
         # geral table de porta em cima da atualizada
         with col_direita:
-            tabel_porta = AgGrid(grid_filt_porta, key="grid3", editable=True, theme="streamlit", reload_data=True,
+            tabel_porta = AgGrid(grid_filt_porta, key="grid3", editable=False, theme="streamlit", reload_data=True,
                                  gridOptions=gd.configure_auto_height(autoHeight=True), fit_columns_on_grid_load=True, height=400)
             tabel_porta.data.set_index("Porta", drop=False, inplace=True)
             tabel_porta.data.sort_values(
@@ -275,18 +275,18 @@ if pagina == "Dashboards":
 
         with col_esquerda:
             tabel_tags = AgGrid(df_tags, key="grid_tags",
-                                editable=True, height=400, gridOptions=gd.configure_auto_height(autoHeight=True), theme="streamlit", reload_data=True, fit_columns_on_grid_load=True)
+                                editable=False, height=400, gridOptions=gd.configure_auto_height(autoHeight=True), theme="streamlit", reload_data=True, fit_columns_on_grid_load=True)
         with mesc_col:
             tabel_col_especificas = tabel.data[[
                 "DevEUI", "Status", "Atividade"]]
             grid_filt_mesclado = tabel_col_especificas.pivot_table(
                 tabel_col_especificas, aggfunc="count", index=["Atividade", "Status"]).reset_index()
-            tabel_mesclado = AgGrid(grid_filt_mesclado, key="grid5", editable=True,
+            tabel_mesclado = AgGrid(grid_filt_mesclado, key="grid5", editable=False,
                                     height=120, theme="streamlit", reload_data=True,
                                     gridOptions=gd.configure_auto_height(autoHeight=True), fit_columns_on_grid_load=True)
         with atividade_col:
             tabel_atividade = AgGrid(grid_filt_atividade, key="grid4",
-                                     editable=True, height=120, gridOptions=gd.configure_auto_height(autoHeight=True), theme="streamlit", reload_data=True, fit_columns_on_grid_load=True)
+                                     editable=False, height=120, gridOptions=gd.configure_auto_height(autoHeight=True), theme="streamlit", reload_data=True, fit_columns_on_grid_load=True)
 
             tabel_atividade.data.set_index("Atividade", inplace=True)
 
@@ -301,7 +301,7 @@ if pagina == "Dashboards":
                 textfont_size=14, textposition="outside", textangle=0)
             fig_atividade.update_coloraxes(showscale=False)
         with status_col:
-            tabel_status = AgGrid(grid_filt_status, key="gid5", editable=True,
+            tabel_status = AgGrid(grid_filt_status, key="gid5", editable=False,
                                   height=120, theme="streamlit", reload_data=True, fit_columns_on_grid_load=True)
             tabel_status.data.set_index("Status", inplace=True)
             fig_local = px.bar(tabel_status.data, x=tabel_status.data.index, y="DevEUI", text_auto=True,
