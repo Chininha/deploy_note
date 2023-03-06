@@ -21,7 +21,7 @@ st.set_page_config(page_title="DASHBOARD NLT",
 
 # ---------------- login -------------------
 
-file = ler_arquivo(nome_df="com_tags.csv")
+file = ler_arquivo(nome_df="com_tags_nova.csv")
 
 lista_tags = []
 contador = Counter()
@@ -350,5 +350,4 @@ if pagina == "Dashboards":
                 header {visibility: hidden;}
                 </style>
                 """
-
     # st.markdown(hide_st_style, unsafe_allow_html=True)
